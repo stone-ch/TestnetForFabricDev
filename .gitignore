@@ -22,3 +22,5 @@
 .tox/
 # vscode settings
 .vscode
+# gradle files
+*gradle*
