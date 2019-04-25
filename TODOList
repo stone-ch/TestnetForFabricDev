@@ -1,0 +1,2 @@
+1. Auto remove the chaincode container when stop the network
+2. Add chaincode development mode
