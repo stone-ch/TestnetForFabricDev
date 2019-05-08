@@ -23,4 +23,4 @@
 # vscode settings
 .vscode
 # gradle files
-*gradle*
+# *gradle*

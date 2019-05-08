@@ -128,10 +128,30 @@ function cleanFiles() {
     set +x
 }
 
+function clearContainers() {
+  CONTAINER_IDS=$(docker ps -a | awk '($2 ~ /dev-peer.*.javacc.*/) {print $1}')
+  if [ -z "$CONTAINER_IDS" -o "$CONTAINER_IDS" == " " ]; then
+    echo "---- No containers available for deletion ----"
+  else
+    docker rm -f $CONTAINER_IDS
+  fi
+}
+
+function removeUnwantedImages() {
+  DOCKER_IMAGE_IDS=$(docker images | awk '($1 ~ /dev-peer.*.javacc.*/) {print $3}')
+  if [ -z "$DOCKER_IMAGE_IDS" -o "$DOCKER_IMAGE_IDS" == " " ]; then
+    echo "---- No images available for deletion ----"
+  else
+    docker rmi -f $DOCKER_IMAGE_IDS
+  fi
+}
+
 function stopAll() {
     set -x
     docker-compose -f ${DOCKER_COMPOSE_FILE} down 2>&1
     cleanFiles
+    clearContainers
+    removeUnwantedImages
     sleep 3
     echo "y" | docker volume prune
     echo "y" | docker network prune
