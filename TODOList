@@ -1,3 +1,2 @@
-1. Auto remove the chaincode container when stop the network
-2. Add chaincode development mode
-3. Add different bin files for different OS(Linux, MacOS, Windows)
+1. Add chaincode development mode
+2. Add different bin files for different OS(Linux, MacOS, Windows)
