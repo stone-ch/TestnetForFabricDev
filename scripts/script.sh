@@ -19,6 +19,7 @@ function createChannel(){
     peer channel create -o ${ORERER_ADDRESS} -c ${CHANNEL_NAME} -f /opt/gopath/src/github.com/hyperledger/fabric/peer/channel-artifacts/testchannel.tx >& log.txt 
     res=$?
     set +x
+    sleep 3
     if [ $res -ne 0 ]; then
         echo "===========$res============="
         echo " ERROR !!! FAILED to create channel"
